@@ -9,21 +9,65 @@
     <link rel="stylesheet" href="./assets/style.css" />
   </head>
   <body>
-    <header>
-      <div class="viewHighscores"></div>
-      <div class="timer"></div>
-    </header>
+    <nav>
+      <div class="viewHighscores">View Highscores</div>
+      <div>Time: <span class="timer"></span></div>
+    </nav>
     <main>
-      <div class="page_title"></div>
-      <div class="page_question">
-        <title></title>
-        <button class="question1"></button>
-        <button class="question2"></button>
-        <button class="question3"></button>
-        <button class="question4"></button>
+      <div class="page_start">
+        <div class="title">
+          <h1>Pop Quiz!</h1>
+          <h2>Click the Start button below to begin the coding quiz.</h2>
+        </div>
+        <button class="startButton">Start</button>
       </div>
-      <div class="page_establishHighscore"></div>
-      <div class="page_highscores"></div>
+      <div class="page_question">
+        <div class="title">
+          <h1 class="question"></h1>
+        </div>
+        <container class="flexContainer">
+          <button class="answer1">asdf</button>
+          <button class="answer2">asdf</button>
+          <button class="answer3">asdf</button>
+          <button class="answer4">asdf</button>
+        </container>
+        <hr />
+        <h3 class="validation">asdfasdf</h3>
+      </div>
+      <div class="page_establishHighscore">
+        <div class="title">
+          <h1>Score: <span class="score"></span></h1>
+          <h2>Would you like to save your score?</h2>
+        </div>
+        <container class="flexContainer">
+          <form class="initials_input">
+            <input
+              type="text"
+              id="initials"
+              name="initials"
+              placeholder="Enter your initials here"
+            />
+          </form>
+          <button class="back">Back</button>
+          <button class="submit">Submit</button>
+        </container>
+      </div>
+      <div class="page_highscores">
+        <div class="title">
+          <h1>Highscores!</h1>
+          <h2>
+            Scores are calculated based on proportion of correct answers
+            multiplied by time remaining.
+          </h2>
+        </div>
+        <ol class="highscore_list">
+          <li class="hs1"></li>
+          <li class="hs2"></li>
+          <li class="hs3"></li>
+          <li class="hs4"></li>
+          <li class="hs5"></li>
+        </ol>
+      </div>
     </main>
 
     <script src="./script.js"></script>

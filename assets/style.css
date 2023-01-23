@@ -1,0 +1,156 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap");
+
+:root {
+  --backgroundColor: #e7d7c1;
+  --textColor: #735751;
+  --buttonColor: #8c1c13;
+  --hoverColor: #bf4342;
+}
+
+/* General Styling */
+body {
+  background-color: var(--backgroundColor);
+}
+
+h1,
+h2,
+h3,
+a,
+p,
+li,
+button,
+input,
+nav div {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--textColor);
+  text-decoration: none;
+}
+
+.title {
+  padding: 1rem;
+}
+.title h1 {
+  font-weight: 700;
+  font-size: 32px;
+}
+
+.title h2 {
+  font-size: 24px;
+}
+
+.flexContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 2rem;
+}
+
+button {
+  background-color: var(--buttonColor);
+  color: var(--backgroundColor);
+  margin: 1rem;
+  padding: 0.3rem 1.2rem;
+  border-radius: 2rem;
+  box-sizing: border-box;
+  text-align: center;
+  transition: all 0.3s ease 0s;
+}
+
+button:hover {
+  border-color: rgba(255, 255, 255, 1);
+  background-color: var(--hoverColor);
+}
+
+/* Header */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 8%;
+}
+
+nav div {
+  font-weight: 500;
+  font-size: 24px;
+  transition: all 0.3s ease 0s;
+}
+
+.viewHighscores:hover {
+  color: var(--hoverColor);
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* Start Page */
+.page_start {
+  display: none;
+}
+
+.startButton {
+  margin: 5rem;
+  padding: 1rem 5rem;
+  font-size: 32px;
+}
+
+/* Question Pages */
+.page_question {
+  display: none;
+}
+
+.answer1,
+.answer2,
+.answer3,
+.answer4 {
+  flex-grow: 1;
+  flex-basis: 100%;
+  text-align: left;
+}
+
+.validation {
+  font-size: 24px;
+  padding: 1rem;
+}
+
+/* Establish Highscore Page */
+.page_establishHighscore {
+  display: none;
+}
+
+.initials_input {
+  flex-grow: 1;
+  flex-basis: 100%;
+  padding: 1rem;
+}
+
+.initials_input input {
+  background-color: var(--backgroundColor);
+  font-size: 24px;
+  padding: 1rem;
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid var(--buttonColor);
+}
+.initials_input input:focus {
+  outline: none;
+}
+
+/* Highscores Page */
+.page_highscores {
+  display: inline-block;
+}
+
+.highscore_list {
+  margin: 2rem;
+}
+.highscore_list li {
+  font-size: 24px;
+  padding: 1rem;
+}
