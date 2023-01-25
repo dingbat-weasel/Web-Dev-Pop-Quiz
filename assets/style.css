@@ -62,6 +62,7 @@ button {
   box-sizing: border-box;
   text-align: center;
   transition: all 0.3s ease 0s;
+  cursor: pointer;
 }
 
 button:hover {
@@ -91,7 +92,7 @@ nav div {
 
 /* Start Page */
 .page_start {
-  display: none;
+  display: inline-block;
 }
 
 .startButton {
@@ -144,7 +145,7 @@ nav div {
 
 /* Highscores Page */
 .page_highscores {
-  display: inline-block;
+  display: none;
 }
 
 .highscore_list {
