@@ -57,7 +57,7 @@ var highscoreSet = [("", ""), ("", ""), ("", ""), ("", ""), ("", "")];
 // Sets local location
 var currentLocation = "loc_page_start";
 
-// Pages Initialized
+// Page Shorthand Initialized
 var page_start = document.querySelector(".page_start");
 var page_question = document.querySelector(".page_question");
 var page_establishHighscore = document.querySelector(
@@ -65,21 +65,51 @@ var page_establishHighscore = document.querySelector(
 );
 var page_highscores = document.querySelector(".page_highscores");
 
-// Buttons Initialized
-var viewHSButton = document.querySelector(".viewHighscores");
+// Button Shorthand Initialized
+var viewHSBtn = document.querySelector(".viewHighscores");
+var startBtn = document.querySelector(".startButton");
+var answer1Btn = document.querySelector(".answer1");
+var answer2Btn = document.querySelector(".answer2");
+var answer3Btn = document.querySelector(".answer3");
+var answer4Btn = document.querySelector(".answer4");
 
-viewHSButton.addEventListener("click", () => {
+// Element Shorthand Initialized
+var questionEl = document.querySelector(".question");
+
+// View Highscores Button
+viewHSBtn.addEventListener("click", () => {
   if (currentLocation === "loc_page_start") {
-    document.querySelector(".page_start").style.display = "none";
-    document.querySelector(".page_highscores").style.display = "inline-block";
-    document.querySelector(".viewHighscores").innerHTML = "&#8592;";
+    page_start.style.display = "none";
+    page_highscores.style.display = "inline-block";
+    viewHSBtn.innerHTML = "&#8592;";
     currentLocation = "loc_page_highscores";
   } else if (currentLocation === "loc_page_highscores") {
-    document.querySelector(".page_highscores").style.display = "none";
-    document.querySelector(".page_start").style.display = "inline-block";
-    document.querySelector(".viewHighscores").innerHTML = "View Highscores";
+    page_highscores.style.display = "none";
+    page_start.style.display = "inline-block";
+    viewHSBtn.innerHTML = "View Highscores";
     currentLocation = "loc_page_start";
   } else {
-    console.warn("Issues with direction of viewHSButton");
+    console.warn("Issues with direction of viewHSBtn");
   }
 });
+
+// Start Button
+startBtn.addEventListener("click", () => {
+  page_start.style.display = "none";
+  page_question.style.display = "inline-block";
+  currentLocation = "loc_page_question";
+  questionIteration();
+});
+
+// function questionIteration() {
+//   q = 0;
+//   while (q < questionSet.length) {
+//     questionEl.innerHTML = questionSet[q].question;
+//     answer1Btn.innerHTML = questionSet[q].answer1;
+//     answer2Btn.innerHTML = questionSet[q].answer2;
+//     answer3Btn.innerHTML = questionSet[q].answer3;
+//     answer4Btn.innerHTML = questionSet[q].answer4;
+
+//     answer1Btn.addEventListener("click", () => q++);
+//   }
+// }
