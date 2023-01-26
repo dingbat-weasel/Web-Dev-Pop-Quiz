@@ -54,8 +54,11 @@ var questionSet = [
 
 var highscoreSet = [("", ""), ("", ""), ("", ""), ("", ""), ("", "")];
 
-// Sets local location
+// Declare local location
 var currentLocation = "loc_page_start";
+
+// Declare global question variable
+var q = 0;
 
 // Page Shorthand Initialized
 var page_start = document.querySelector(".page_start");
@@ -68,6 +71,7 @@ var page_highscores = document.querySelector(".page_highscores");
 // Button Shorthand Initialized
 var viewHSBtn = document.querySelector(".viewHighscores");
 var startBtn = document.querySelector(".startButton");
+var answerBtns = document.querySelectorAll(".answer");
 var answer1Btn = document.querySelector(".answer1");
 var answer2Btn = document.querySelector(".answer2");
 var answer3Btn = document.querySelector(".answer3");
@@ -98,18 +102,25 @@ startBtn.addEventListener("click", () => {
   page_start.style.display = "none";
   page_question.style.display = "inline-block";
   currentLocation = "loc_page_question";
-  questionIteration();
+  displayNewQuestion(q);
+  nextQuestion(q);
 });
 
-// function questionIteration() {
-//   q = 0;
-//   while (q < questionSet.length) {
-//     questionEl.innerHTML = questionSet[q].question;
-//     answer1Btn.innerHTML = questionSet[q].answer1;
-//     answer2Btn.innerHTML = questionSet[q].answer2;
-//     answer3Btn.innerHTML = questionSet[q].answer3;
-//     answer4Btn.innerHTML = questionSet[q].answer4;
+// Display a New Question
+function displayNewQuestion(q) {
+  questionEl.innerHTML = questionSet[q].question;
+  answer1Btn.innerHTML = questionSet[q].answer1;
+  answer2Btn.innerHTML = questionSet[q].answer2;
+  answer3Btn.innerHTML = questionSet[q].answer3;
+  answer4Btn.innerHTML = questionSet[q].answer4;
+}
 
-//     answer1Btn.addEventListener("click", () => q++);
-//   }
-// }
+// Next Question Displayed on Answer Click
+function nextQuestion(q) {
+  for (i = 1; i < 5; i++) {
+    document.querySelector(`.answer${i}`).addEventListener("click", () => {
+      q++;
+      displayNewQuestion(q);
+    });
+  }
+}
