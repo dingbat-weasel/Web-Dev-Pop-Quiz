@@ -11,7 +11,7 @@
   <body>
     <nav>
       <div class="viewHighscores">View Highscores</div>
-      <div>Time: <span class="timer">0</span>s</div>
+      <div>Time: <span class="timer">100</span>s</div>
     </nav>
     <main>
       <div class="page_start">
@@ -37,28 +37,30 @@
       <div class="page_establishHighscore">
         <div class="title">
           <h1>Score: <span class="score"></span></h1>
-          <h2>Would you like to save your score?</h2>
+          <h2>
+            Score's are calcaulated based on a relationship between the number
+            of total correct answers and the time remaining. Would you like to
+            save your score?
+          </h2>
         </div>
         <container class="flexContainer">
           <form class="initials_input">
             <input
               type="text"
               id="initials"
+              class="userInput"
               name="initials"
-              placeholder="Enter your initials here"
+              placeholder="Enter your name here"
             />
+            <button class="back">Back</button>
+            <button class="submit" type="submit">Submit</button>
           </form>
-          <button class="back">Back</button>
-          <button class="submit">Submit</button>
         </container>
       </div>
       <div class="page_highscores">
         <div class="title">
           <h1>Highscores!</h1>
-          <h2>
-            Scores are calculated based on proportion of correct answers
-            multiplied by time remaining.
-          </h2>
+          <h2></h2>
         </div>
         <ol class="highscore_list">
           <li class="hs1"></li>

@@ -52,13 +52,21 @@ var questionSet = [
   },
 ];
 
-var highscoreSet = [("", ""), ("", ""), ("", ""), ("", ""), ("", "")];
+var highscoreSet = [];
 
 // Declare local location
 var currentLocation = "loc_page_start";
 
 // Declare global question variable
 var q = 0;
+
+// Declare global score
+var amountCorrect = 0;
+var score;
+
+// Declare timer
+var timeLeft = 100;
+var finalTime;
 
 // Page Shorthand Initialized
 var page_start = document.querySelector(".page_start");
@@ -76,9 +84,33 @@ var answer1Btn = document.querySelector(".answer1");
 var answer2Btn = document.querySelector(".answer2");
 var answer3Btn = document.querySelector(".answer3");
 var answer4Btn = document.querySelector(".answer4");
+var submitScoreBtn = document.querySelector(".submit");
+var backBtn = document.querySelector(".back");
 
 // Element Shorthand Initialized
 var questionEl = document.querySelector(".question");
+var feedbackEl = document.querySelector(".validation");
+var timerEl = document.querySelector(".timer");
+var scoreEl = document.querySelector(".score");
+var userInput = document.querySelector(".initials_input");
+
+// Timer
+function timer() {
+  var timer = setInterval(function () {
+    timeLeft--;
+    timerEl.textContent = timeLeft;
+
+    if (window.q === questionSet.length) {
+      clearInterval(timer);
+    } else if (timeLeft <= 0) {
+      window.finalTime = 0;
+      clearInterval(timer);
+      console.log(finalTime);
+      timerEl.textContent = finalTime;
+      finalScore(amountCorrect, finalTime);
+    }
+  }, 1000);
+}
 
 // View Highscores Button
 viewHSBtn.addEventListener("click", () => {
@@ -103,6 +135,7 @@ startBtn.addEventListener("click", () => {
   page_question.style.display = "inline-block";
   currentLocation = "loc_page_question";
   displayNewQuestion(q);
+  timer();
   nextQuestion(q);
 });
 
@@ -115,12 +148,76 @@ function displayNewQuestion(q) {
   answer4Btn.innerHTML = questionSet[q].answer4;
 }
 
-// Next Question Displayed on Answer Click
+// Validate User Choice
+function validateChoice(event) {
+  if (event.target.textContent === questionSet[q].correctAnswer) {
+    window.amountCorrect++;
+    feedbackEl.innerHTML = "Correct!";
+  } else {
+    feedbackEl.innerHTML = "Incorrect!";
+  }
+}
+
+// Answer Buttons; Validate and New Question on Click
 function nextQuestion(q) {
   for (i = 1; i < 5; i++) {
-    document.querySelector(`.answer${i}`).addEventListener("click", () => {
+    document.querySelector(`.answer${i}`).addEventListener("click", (event) => {
+      // Validate and store
+      validateChoice(event);
+
       q++;
-      displayNewQuestion(q);
+      window.q++;
+
+      if (window.q === questionSet.length) {
+        console.log("done with questions");
+        window.finalTime = Number(timeLeft);
+        timerEl.innerHTML = finalTime;
+        finalScore(amountCorrect, finalTime);
+        page_question.style.display = "none";
+        page_establishHighscore.style.display = "inline-block";
+        establishHighscore(score, highscoreSet);
+      } else {
+        displayNewQuestion(q);
+      }
     });
   }
+}
+
+function finalScore(amountCorrect, finalTime) {
+  percentageCorrect = amountCorrect / questionSet.length;
+  console.log(percentageCorrect);
+  console.log(finalTime);
+  score = Math.floor(percentageCorrect * finalTime);
+  return;
+}
+
+function establishHighscore(score, highscoreSet) {
+  scoreEl.innerHTML = score;
+  submitScoreBtn.addEventListener("click", (event) => {
+    event.preventDefault();
+    var userInput = document.getElementById("initials").value;
+    var newScore = { userInput, score };
+    highscoreSet.push(newScore);
+    highscoreSet.sort((a, b) => b.score - a.score);
+
+    console.log(highscoreSet);
+    page_establishHighscore.style.display = "none";
+    page_highscores.style.display = "inline-block";
+
+    document.querySelector(
+      ".hs1"
+    ).textContent = `${highscoreSet[0].userInput}: ${highscoreSet[0].score}`;
+    document.querySelector(
+      ".hs1"
+    ).textContent = `${highscoreSet[1].userInput}: ${highscoreSet[1].score}`;
+    document.querySelector(
+      ".hs1"
+    ).textContent = `${highscoreSet[2].userInput}: ${highscoreSet[2].score}`;
+    document.querySelector(
+      ".hs1"
+    ).textContent = `${highscoreSet[3].userInput}: ${highscoreSet[3].score}`;
+    document.querySelector(
+      ".hs1"
+    ).textContent = `${highscoreSet[4].userInput}: ${highscoreSet[4].score}`;
+  });
 }
